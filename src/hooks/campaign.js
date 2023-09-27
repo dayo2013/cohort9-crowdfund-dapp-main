@@ -19,10 +19,11 @@ const useCampaign = () => {
         }
     }
         const Totalcampaign = async (count) => {
+
             try {
                 const d = [];
                 for (let index = 1; index <= count; index++) {
-                  const result = await poolcampaign.crowd(1);
+                  const result = await poolcampaign.crowd(index);
                   d.push(result)
                 }
                 return d;
@@ -35,7 +36,7 @@ const useCampaign = () => {
         const getAll = async () => {
             try {
               await fetchcampaign().then(async (count) => (
-                await Totalcampaign(count))).then((res) => setcountcampaign(res));
+                await Totalcampaign(count))).then((res) => {setgetcampaign(res); console.log(res)});
             } catch (error) {
               console.log(error)
             }
@@ -47,7 +48,7 @@ const useCampaign = () => {
 
     }, [isActive, provider])
 
-   return countcampaign;
+   return getcampaign;
 }
 
 export default useCampaign;
